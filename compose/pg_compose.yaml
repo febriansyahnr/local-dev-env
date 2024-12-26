@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  mysql:
+    image: mysql
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 123qweasdzxc
+  rmq:
+    image: masstransit/rabbitmq
+    restart: always
+    ports:
+      - 5672:5672
+      - 8071:15671
+      - 8072:15672
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - 6379:6379
+networks: {}
