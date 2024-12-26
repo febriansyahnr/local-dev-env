@@ -10,6 +10,6 @@ resource "docker_container" "redis" {
   remove_volumes = false
   ports {
     internal = 6379
-    external = 6379
+    external = var.redis_config.port
   }
 }

@@ -4,6 +4,8 @@ This repository is configuration for local development. You can use docker compo
 ## Terraform
 [How to setup terraform in local.](https://developer.hashicorp.com/terraform/install)
 ### How to run
-1. `cd terraform`
-2. `terraform init`
-3. `terraform apply`
+1. Run `cd terraform`
+2. Run `terraform init`
+3. Rename `variables.tfvars.example` to `variables.tfvars`
+4. Optionally, you can change the variables in `variables.tfvars`
+5. Run `terraform apply`

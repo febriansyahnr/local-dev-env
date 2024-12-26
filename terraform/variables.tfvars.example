@@ -1,0 +1,14 @@
+mysql_config = {
+  external_port = 3306
+  root_password = "123qweasdzxc"
+}
+
+rabbitmq_config = {
+  main_port = 5672,
+  http_port = 8072,
+  https_port = 8071,
+}
+
+redis_config = {
+  port = 6379
+}

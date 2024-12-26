@@ -11,14 +11,14 @@ resource "docker_container" "rabbitmq" {
 
   ports {
     internal = 5672
-    external = 5672
+    external = var.rabbitmq_config.main_port
   }
   ports {
     internal = 15671
-    external = 8071
+    external = var.rabbitmq_config.https_port
   }
   ports {
     internal = 15672
-    external = 8072
+    external = var.rabbitmq_config.http_port
   }
 }

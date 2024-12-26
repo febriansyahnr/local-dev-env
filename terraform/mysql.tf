@@ -9,12 +9,12 @@ resource "docker_container" "mysql" {
   restart = "always"
 
   env = [
-    "MYSQL_ROOT_PASSWORD=123qweasdzxc"
+    "MYSQL_ROOT_PASSWORD=${var.mysql_config.root_password}",
   ]
 
   ports {
     internal = 3306
-    external = 3306
+    external = var.mysql_config.external_port
   }
 
   networks_advanced {
