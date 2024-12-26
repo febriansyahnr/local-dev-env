@@ -1,0 +1,50 @@
+{
+    "PERMATA": {
+        "minChar": 8,
+        "maxChar": 12,
+        "binStatic": "7664",
+        "binDynamic": "7663"
+    },
+    "BRI": {
+        "minChar": 7,
+        "maxChar": 11,
+        "binStatic": "14956",
+        "binDynamic": "14957"
+    },
+    "MANDIRI": {
+        "minChar": 7,
+        "maxChar": 11,
+        "binStatic": "88910",
+        "binDynamic": "88910"
+    },
+    "MANDIRI_CENTRAL": {
+        "minChar": 7,
+        "maxChar": 11,
+        "binStatic": "89661",
+        "binDynamic": "89661"
+    },
+    "CIMB": {
+        "minChar": 8,
+        "maxChar": 12,
+        "binStatic": "2211",
+        "binDynamic": "2211"
+    },
+    "BSI": {
+        "minChar": 8,
+        "maxChar": 12,
+        "binStatic": "0011",
+        "binDynamic": "0011"
+    },
+    "BNC": {
+        "minChar": 5,
+        "maxChar": 9,
+        "binStatic": "9010011",
+        "binDynamic": "9010011"
+    },
+    "BNI": {
+        "minChar": 8,
+        "maxChar": 12,
+        "binStatic": "8412",
+        "binDynamic": "8412"
+    }
+}

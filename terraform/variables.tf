@@ -38,3 +38,15 @@ variable "redis_config" {
     port = 6379,
   }
 }
+
+# Consul config
+variable "consul_config"  {
+  type = object({
+    main_port = number,
+    udp_port = number,
+  })
+  default = {
+    main_port = 8500,
+    udp_port = 8600,
+  }
+}

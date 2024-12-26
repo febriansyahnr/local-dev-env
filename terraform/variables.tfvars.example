@@ -12,3 +12,8 @@ rabbitmq_config = {
 redis_config = {
   port = 6379
 }
+
+consul_config = {
+  main_port = 8500,
+  udp_port = 8600,
+}

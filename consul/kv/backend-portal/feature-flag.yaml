@@ -1,0 +1,132 @@
+health-check-ff:
+  variations:
+    A: false
+    B: true
+  targeting: # If you want to target a subset of your users in particular
+  - query: key eq "flagging-health-check"
+    percentage:
+      A: 0
+      B: 100
+  defaultRule: # When no targeting match we use the defaultRule
+    variation: A
+  metadata:
+    issue_link: https://github.com/thomaspoignant/go-feature-flag/issues/XXX
+    description: this is my first feature flag
+backend-portal-otp-bypass:
+  variations:
+    ON: true
+    OFF: false
+  targeting:
+  - name: Check Env
+    query: environment in ["test", "staging", "local", "production"]
+    variation: ON
+  defaultRule:
+    variation: OFF
+backend-portal-otp-bypass-whitelist:
+  variations:
+    ON: true
+    OFF: false
+  targeting:
+  - name: Check Email
+    query: email in ["dhira.wigata@harsya.com", "ericsson.budhilaw@harsya.com"]
+    variation: ON
+  defaultRule:
+    variation: OFF
+backend-portal-disbursement-total-worker-pool:
+  variations:
+    "10": 10
+    "25": 25
+    "50": 50
+  targeting:
+  - name: Rule Production
+    query: key eq "production"
+    variation: "50"
+  - name: Rule Staging
+    query: key eq "staging"
+    variation: "25"
+  defaultRule:
+    variation: "10"
+backend-portal-xb-payout-enabled:
+  variations:
+    ON: true
+    OFF: false
+  targeting:
+  - name: Check Env
+    query: environment in ["test", "staging", "local"]
+    variation: ON
+  defaultRule:
+    variation: OFF
+backend-portal-beneficiaryAccount-accountNo-bypass-whitelist:
+  variations:
+    ON: true
+    OFF: false
+  targeting:
+  - name: Check Account No
+    query: account_no in ["111501015932505", "111501016046501", "999966660002"]
+    variation: ON
+  defaultRule:
+    variation: OFF
+backend-portal-va-payment-maximum-amount:
+  variations:
+    ON: 250000000
+    OFF: 0
+  targeting:
+  - name: Check Env
+    query: key eq "staging"
+    variation: ON
+  defaultRule:
+    variation: OFF
+backend-portal-processor-routing:
+  variations:
+    merchant-paper:
+    - processorName: SNAP_CORE_PROCESSOR
+      priority: 1
+      isActive: false
+    - processorName: FLIP_PG_PROCESSOR
+      priority: 2
+      isActive: true
+    processorList:
+    - processorName: SNAP_CORE_PROCESSOR
+      priority: 1
+      isActive: true
+    - processorName: FLIP_PG_PROCESSOR
+      priority: 2
+      isActive: false
+  targeting:
+  - name: Merchant Paper
+    query: key eq "922e39ab-7565-49f6-b84f-fb56122821aea"
+    variation: merchant-paper
+  defaultRule:
+    variation: processorList
+backend-portal-merchant-idempotency-key-validation-exclude:
+  variations:
+    ON: true
+    OFF: false
+  targeting:
+  - name: check merchant
+    query: key in ["922e39ab-7565-49f6-b84f-fb56122821ae"]
+    variation: ON
+  defaultRule:
+    variation: OFF
+backend-portal-use-beneficiary-account-as-inquiry-data:
+  variations:
+    ON: true
+    OFF: false
+  targeting:
+  - name: Check Env
+    query: environment in ["staging", "local"]
+    variation: ON
+  defaultRule:
+    variation: OFF
+backend-portal-force-auto-withdrawal-process:
+  variations:
+    ON: true
+    OFF: false
+  targeting:
+  - name: Whitelist merchant to test forced withdrawal
+    query: merchant_id in ["38daaa22-379d-4347-857d-ee3dbd479f72", "2863d315-d912-4b9c-90cc-29582aeb041b",
+      "93cc50b8-f8e6-4771-a808-bf397c0be568", "1f573ccd-d604-4f2a-b871-e57fe7c1bda5",
+      "183dabff-af1b-48a5-863f-d3a488c01f9e"]
+    variation: ON
+  defaultRule:
+    variation: OFF

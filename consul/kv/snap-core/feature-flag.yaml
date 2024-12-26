@@ -1,0 +1,160 @@
+snap-core-bank-converter:
+  variations:
+    ON: true
+    OFF: false
+  targeting:
+    - query: key eq "bank-converter-status"
+      variation: ON
+  defaultRule:
+    variation: ON
+snap-core-bank-transfer-routing:
+  variations:
+    ON: true
+    OFF: false
+  targeting:
+    - query: key eq "transfer-routing-status"
+      variation: ON
+    - query: key eq "transfer-duplication-check-status"
+      variation: ON
+    - query: key eq "transfer-process-async-status" # set transfer process to async or sync
+      variation: OFF
+  defaultRule:
+    variation: OFF
+snap-core-bank-transfer-process:
+  variations:
+    ASYNC: true
+    SYNC: false
+  targeting:
+    - name: Merchant PAPER
+      query: key eq "922e39ab-7565-49f6-b84f-fb56122821ae" # force transfer process to async/sync by merchant uuid
+      variation: SYNC
+  defaultRule:
+    variation: SYNC
+snap-core-bin-code-virtual-account:
+  variations:
+    ON: true
+    OFF: false
+  targeting:
+    - query: key eq "bin-code-virtual-account-status"
+      variation: ON
+  defaultRule:
+    variation: OFF
+snap-core-transfer-config-ff:
+  variations:
+    ON: true
+    OFF: false
+  targeting:
+    - query: key eq "922e39ab-7565-49f6-b84f-fb56122821ae"
+      variation: OFF
+    - query: key eq "93cc50b8-f8e6-4771-a808-bf397c0be568"
+      variation: OFF
+  defaultRule:
+    variation: OFF
+snap-core-transfer-config:
+  variations:
+    DEFAULT: ""
+    HARSYA_TRF_CONFIG: "ab8b015f-11cb-11ef-b053-0242ac110004,c8142a3b-6db3-11ef-9fc0-0242ac120005,0E799C89-A59B-48F5-AF81-851920B0954A,91754C5B-99A4-4CA3-BF93-9CE13AB5D089"
+    ASYNC_BCA: "ab8b015f-11cb-11ef-b053-0242ac110004,c8142a3b-6db3-11ef-9fc0-0242ac120005,0E799C89-A59B-48F5-AF81-851920B0954A,91754C5B-99A4-4CA3-BF93-9CE13AB5D089"
+    ASYNC_INSUF_BALANCE: "ab8b015f-11cb-11ef-b053-0242ac110004,c8142a3b-6db3-11ef-9fc0-0242ac120005"
+    ASYNC_MANDIRI_PUSAT: "ab8b015f-11cb-11ef-b053-0242ac110004,4883c30d-76f6-11ef-a32b-0242ac120005,0E799C89-A59B-48F5-AF81-851920B0954A,91754C5B-99A4-4CA3-BF93-9CE13AB5D089"
+    PERMATA: "aa6f49bd-0c57-4db6-a445-83bbf18e8eb6,0E799C89-A59B-48F5-AF81-851920B0954A,91754C5B-99A4-4CA3-BF93-9CE13AB5D089"
+    CIMB: "2a739bef-98f3-40f9-8df8-94bf16b52ae1,c7480f14-ebb2-4f0d-ae21-20028158b7ac,162bfab8-81b7-4836-b78b-e439fea8cf89"
+    BCA: "c8142a3b-6db3-11ef-9fc0-0242ac120005"
+    MANDIRI_PUSAT: "4883c30d-76f6-11ef-a32b-0242ac120005,13d4db9f-76f7-11ef-a32b-0242ac120005,1fc96a4e-76f7-11ef-a32b-0242ac120005,eeb2c637-dd91-4a35-a2f3-d6f66bbd8808"
+    MANDIRI: "e9262c5a-c322-4042-b19a-070bab95259b,3e59027e-f676-4cf0-a862-a16c5883769b"
+    DBS: "719104cf-3eac-11ef-a1d8-0242ac120007"
+    SIMULATION: "ab8b015f-11cb-11ef-b053-0242ac110004"
+  targeting:
+    - query: key eq "922e39ab-7565-49f6-b84f-fb56122821ae"
+      variation: PERMATA
+    - query: key eq "93cc50b8-f8e6-4771-a808-bf397c0be568"
+      variation: CIMB
+  defaultRule:
+    variation: HARSYA_TRF_CONFIG
+snap-core-virtual-account-custom-logic:
+  variations:
+    Variation_1:
+      logicName: DELAY
+      data: 20
+    Variation_2:
+      logicName: DELAY
+      data: 40
+    Variation_3:
+      logicName: DELAY
+      data: 60
+    Default: {}
+  targeting:
+    - name: Rule 1
+      query: key eq "8891000017941164"
+      variation: Variation_1
+    - name: Rule 2
+      query: key eq "7663000177523576"
+      variation: Variation_2
+    - name: Rule 3
+      query: key eq "7664000181512472"
+      variation: Variation_2
+    - name: Rule 4
+      query: key eq "8891000013942403"
+      variation: Variation_3
+  defaultRule:
+    variation: Default
+snap-core-custom-remark-rules:
+  variations:
+    Permata:
+      intrabank: "[^a-zA-Z0-9- ,.]"
+      interbank: "[^a-zA-Z0-9- ,.\\/]"
+      bifast: "[^a-zA-Z0-9- ,.]"
+    Default:
+      intrabank: ""
+      interbank: ""
+      bifast: ""
+  targeting:
+    - name: Bank Permata
+      query: key eq "permata"
+      variation: Permata
+  defaultRule:
+    variation: Default
+snap-core-va-flow:
+  variations:
+    Mandiri:
+      master: "MANDIRI"
+      nonmaster: "MANDIRI_CENTRAL"
+      mode: "both"
+    BNI:
+      master: "BNI"
+      nonmaster: "BNI"
+      mode: "nonmaster"
+    Default:
+      master: ""
+      nonmaster: ""
+      mode: "master"
+  targeting:
+    - name: Bank Mandiri
+      query: key eq "MANDIRI"
+      variation: Mandiri
+    - name: Bank BNI
+      query: key eq "BNI"
+      variation: BNI
+  defaultRule:
+    variation: Default
+snap-core-base-url:
+  variations:
+    Default: ""
+    BRI: "https://wiremock.stag-v2.paper.id/bri"
+    BNI: "https://wiremock.stag-v2.paper.id/bni"
+    BCA: "https://wiremock.stag-v2.paper.id/bca"
+    CIMB: "https://wiremock.stag-v2.paper.id/cimb"
+    PERMATA: "https://wiremock.stag-v2.paper.id/permata"
+  targeting:
+  - query: key eq "BNI"
+    variation: BNI
+  - query: key eq "BRI"
+    variation: BRI
+  - query: key eq "BCA"
+    variation: BCA
+  - query: key eq "CIMB"
+    variation: CIMB
+  - query: key eq "PERMATA"
+    variation: PERMATA
+  defaultRule:
+    variation: Default
