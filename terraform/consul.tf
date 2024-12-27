@@ -8,6 +8,16 @@ resource "docker_container" "consul" {
   name = "consul-server"
   restart = "always"
 
+  command = [
+  "agent",
+  "-server",
+  "-ui",
+  "-bind", "0.0.0.0",
+  "-client", "0.0.0.0",
+  "-bootstrap",
+  "-bootstrap-expect", "1"
+  ]
+
   env = [
     "CONSUL_BIND_INTERFACE=eth0",
     "CONSUL_LOCAL_CONFIG={\"leave_on_terminate\": true}",
