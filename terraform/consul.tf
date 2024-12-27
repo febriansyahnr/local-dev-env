@@ -1,11 +1,11 @@
 resource "docker_image" "consul" {
-  name = "hashicorp/consul:latest"
+  name         = "hashicorp/consul:latest"
   keep_locally = true
 }
 
 resource "docker_container" "consul" {
-  image = docker_image.consul.image_id
-  name = "consul-server"
+  image   = docker_image.consul.image_id
+  name    = "consul-server"
   restart = "always"
 
   env = [
@@ -26,11 +26,11 @@ resource "docker_container" "consul" {
 
   remove_volumes = false
   volumes {
-    host_path = abspath("${path.cwd}/../_data/consul/data")
+    host_path      = abspath("${path.cwd}/../_data/consul/data")
     container_path = "/consul/data"
   }
   volumes {
-    host_path = abspath("${path.cwd}/../_data/consul/config")
+    host_path      = abspath("${path.cwd}/../_data/consul/config")
     container_path = "/consul/config"
   }
 }
