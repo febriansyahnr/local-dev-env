@@ -1,11 +1,11 @@
 resource "docker_image" "mysql" {
-  name = "mysql"
+  name         = "mysql"
   keep_locally = true
 }
 
 resource "docker_container" "mysql" {
-  image = docker_image.mysql.image_id
-  name = "mysql"
+  image   = docker_image.mysql.image_id
+  name    = "mysql"
   restart = "always"
 
   env = [
@@ -23,7 +23,8 @@ resource "docker_container" "mysql" {
 
   remove_volumes = false
   volumes {
-    host_path = abspath("${path.cwd}/../_data/mysql")
+    host_path      = abspath("${path.cwd}/../_data/mysql")
     container_path = "/var/lib/mysql"
   }
 }
+

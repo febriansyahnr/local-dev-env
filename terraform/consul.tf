@@ -15,18 +15,22 @@ resource "docker_container" "consul" {
 
   ports {
     internal = 8500
-    external = 8500
+    external = var.consul_config.main_port
   }
 
   ports {
     internal = 8600
-    external = 8600
+    external = var.consul_config.udp_port
     protocol = "udp"
   }
 
   remove_volumes = false
   volumes {
-    volume_name = "consul-data"
+    host_path = abspath("${path.cwd}/../_data/consul/data")
     container_path = "/consul/data"
+  }
+  volumes {
+    host_path = abspath("${path.cwd}/../_data/consul/config")
+    container_path = "/consul/config"
   }
 }
