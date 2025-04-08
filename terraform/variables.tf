@@ -17,13 +17,13 @@ variable "mysql_config" {
 variable "rabbitmq_config" {
   description = "dynamic configuration for rabbitmq"
   type = object({
-    main_port = number,
-    http_port = number,
+    main_port  = number,
+    http_port  = number,
     https_port = number,
   })
   default = {
-    main_port = 5672,
-    http_port = 15671,
+    main_port  = 5672,
+    http_port  = 15671,
     https_port = 15672,
   }
 }
@@ -40,13 +40,27 @@ variable "redis_config" {
 }
 
 # Consul config
-variable "consul_config"  {
+variable "consul_config" {
   type = object({
     main_port = number,
-    udp_port = number,
+    udp_port  = number,
   })
   default = {
     main_port = 8500,
-    udp_port = 8600,
+    udp_port  = 8600,
+  }
+}
+
+
+# Postgres Config
+variable "postgres_config" {
+  description = "dynamic configuration for postgres"
+  type = object({
+    root_password = string,
+    external_port = number,
+  })
+  default = {
+    external_port = 5432,
+    root_password = "password"
   }
 }

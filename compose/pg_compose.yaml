@@ -1,5 +1,15 @@
 version: "3.8"
 services:
+  consul:
+    image: hashicorp/consul:latest
+    environment:
+      - CONSUL_BIND_INTERFACE=eth0
+      - 'consul_local_config={"leave_on_terminate": true}'
+    command: agent -server -ui -bind=0.0.0.0 -client=0.0.0.0 -bootstrap -bootstrap-expect=1
+    volumes:
+      - consul-data:/consul/data
+    ports:
+      - 8500:8500
   mysql:
     image: mysql
     restart: always
